@@ -1,0 +1,28 @@
+<header class="header">
+    <div class="logo">
+      <span class="logo-icon">⚽</span>
+      <span class="logo-text">COMPLEJO<span>FÚTBOL</span></span>
+    </div>
+
+    <nav class="nav-menu">
+      <a routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+      <a routerLink="/canchas" routerLinkActive="activo">Canchas</a>
+      <a href="#">Torneos</a>
+
+      <a href="#">Contacto</a>
+    </nav>
+
+    <div class="actions">
+      @if (usuario(); as u) {
+        @if (esGestor()) {
+          <a class="btn-link" routerLink="/panel">Panel</a>
+        }
+        <a class="btn-link" routerLink="/mis-reservas">Mis reservas</a>
+        <a class="saludo" routerLink="/perfil">Hola, {{ u.nombre }}</a>
+        <button class="btn-salir" (click)="salir()">Salir</button>
+      } @else {
+        <a class="btn-link" routerLink="/login">Ingresar</a>
+        <button class="btn-primary" routerLink="/registro">Registro</button>
+      }
+    </div>
+  </header>

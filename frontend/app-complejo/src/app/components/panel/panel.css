@@ -1,0 +1,68 @@
+.panel {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  min-height: 60vh;
+}
+
+.panel-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.quien {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #aaaaaa;
+  font-size: 0.95rem;
+}
+
+.badge {
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background-color: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.solapas {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid #333333;
+  margin-bottom: 2rem;
+}
+
+.solapas a {
+  padding: 0.75rem 1.25rem;
+  color: #aaaaaa;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.2s ease;
+}
+
+.solapas a:hover {
+  color: #ffffff;
+}
+
+.solapas a.activa {
+  color: #2ecc71;
+  border-bottom-color: #2ecc71;
+}

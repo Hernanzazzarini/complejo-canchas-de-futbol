@@ -1,0 +1,34 @@
+<section class="canchas">
+  <h2>NUESTRAS CANCHAS</h2>
+
+  @if (cargando()) {
+    <p class="estado">Cargando canchas…</p>
+  } @else if (error()) {
+    <div class="estado estado-error">
+      <p>{{ error() }}</p>
+      <button class="btn-main" (click)="cargar()">Reintentar</button>
+    </div>
+  } @else if (canchas().length === 0) {
+    <p class="estado">Todavía no hay canchas publicadas.</p>
+  } @else {
+    <div class="canchas-grid">
+      @for (cancha of canchas(); track cancha.id) {
+        <article class="cancha-card">
+          <div class="cancha-header">
+            <h3>{{ cancha.nombre }}</h3>
+            <span class="badge" [class.badge-techada]="cancha.techada">
+              {{ cancha.techada ? 'Techada' : 'Aire libre' }}
+            </span>
+          </div>
+
+          <p class="precio">
+            {{ cancha.precioPorHora | currency: 'ARS' : 'symbol' : '1.0-0' }}
+            <small>/ hora</small>
+          </p>
+
+          <a class="btn-main" [routerLink]="['/reservar', cancha.id]">Reservar</a>
+        </article>
+      }
+    </div>
+  }
+</section>

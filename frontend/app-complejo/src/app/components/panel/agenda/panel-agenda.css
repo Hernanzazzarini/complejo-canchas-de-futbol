@@ -1,0 +1,106 @@
+.resumen {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.dato {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.1rem 1.5rem;
+  border-radius: 8px;
+  background-color: #222222;
+  border-bottom: 3px solid #2ecc71;
+  min-width: 190px;
+}
+
+.numero {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #2ecc71;
+}
+
+.rotulo {
+  font-size: 0.82rem;
+  color: #aaaaaa;
+  text-transform: capitalize;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fila {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  border-left: 3px solid #2ecc71;
+}
+
+.fila.anulada {
+  border-left-color: #555555;
+  opacity: 0.65;
+}
+
+.horario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 130px;
+}
+
+.horas {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.dia {
+  font-size: 0.78rem;
+  color: #888888;
+  text-transform: capitalize;
+}
+
+.datos {
+  flex: 1;
+  min-width: 180px;
+}
+
+.datos h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.cliente {
+  margin: 0;
+  color: #aaaaaa;
+  font-size: 0.88rem;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.precio {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2ecc71;
+}
+
+.fila.anulada .precio {
+  color: #888888;
+  text-decoration: line-through;
+}

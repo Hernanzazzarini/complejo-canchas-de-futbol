@@ -1,0 +1,113 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+  }
+  
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+  
+  .logo-text span {
+    color: #2ecc71; /* Verde fútbol */
+  }
+  
+  /* Menú de Navegación */
+  .nav-menu {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-menu a {
+    color: #cccccc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-menu a:hover {
+    color: #2ecc71;
+  }
+
+  .nav-menu a.activo {
+    color: #2ecc71;
+    cursor: default;
+  }
+  
+  /* Botón de Acción */
+  .btn-primary {
+    background-color: #2ecc71;
+    color: #1a1a1a;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+  }
+
+  /* Sesión iniciada */
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .saludo {
+    color: #dddddd;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .saludo:hover {
+    color: #2ecc71;
+  }
+
+  .btn-link {
+    color: #cccccc;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .btn-link:hover {
+    color: #2ecc71;
+  }
+
+  .btn-salir {
+    background-color: transparent;
+    color: #cccccc;
+    border: 1px solid #444444;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .btn-salir:hover {
+    border-color: #2ecc71;
+    color: #2ecc71;
+  }

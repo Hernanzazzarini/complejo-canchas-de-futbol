@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolvePackageJsonExports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2023",
+    "types": ["node", "jest"],
+    "sourceMap": true,
+    // TypeScript 6 exige rootDir explícito. Acá es "." para que los specs de
+    // test/ entren en el programa de ts-jest; el build usa tsconfig.build.json,
+    // que lo acota a ./src para que dist/ quede plano.
+    "rootDir": ".",
+    "outDir": "./dist",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictPropertyInitialization": false
+  }
+}

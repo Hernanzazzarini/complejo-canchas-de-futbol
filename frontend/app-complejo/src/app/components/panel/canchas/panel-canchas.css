@@ -1,0 +1,79 @@
+.alta {
+  margin-bottom: 2rem;
+}
+
+.nota {
+  margin: 0.75rem 0 0;
+  color: #888888;
+  font-size: 0.85rem;
+}
+
+.form-alta h3 {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.fila-campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  border-left: 3px solid #2ecc71;
+}
+
+.fila.baja {
+  border-left-color: #555555;
+  opacity: 0.7;
+}
+
+.datos h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.detalle {
+  margin: 0;
+  color: #aaaaaa;
+  font-size: 0.9rem;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.form-edicion {
+  width: 100%;
+}
+
+.resumen {
+  margin: 1.5rem 0 0;
+  color: #777777;
+  font-size: 0.85rem;
+}

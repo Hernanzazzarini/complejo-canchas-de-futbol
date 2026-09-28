@@ -1,0 +1,74 @@
+<section class="auth">
+  <div class="auth-card">
+    <h2>CREAR CUENTA</h2>
+    <p class="subtitulo">Registrate para reservar tu cancha.</p>
+
+    @if (error()) {
+      <div class="error-servidor">{{ error() }}</div>
+    }
+
+    <form [formGroup]="formulario" (ngSubmit)="enviar()">
+      <div class="campo">
+        <label for="nombre">NOMBRE</label>
+        <input
+          id="nombre"
+          type="text"
+          formControlName="nombre"
+          autocomplete="name"
+          placeholder="Tu nombre y apellido"
+          [class.invalido]="invalido('nombre')"
+        />
+        @if (invalido('nombre')) {
+          <span class="ayuda">El nombre necesita al menos 3 caracteres.</span>
+        }
+      </div>
+
+      <div class="campo">
+        <label for="email">EMAIL</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          placeholder="tu@mail.com"
+          [class.invalido]="invalido('email')"
+        />
+        @if (invalido('email')) {
+          <span class="ayuda">Ingresá un email válido.</span>
+        }
+      </div>
+
+      <div class="campo">
+        <label for="password">CONTRASEÑA</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          autocomplete="new-password"
+          placeholder="Mínimo 6 caracteres"
+          [class.invalido]="invalido('password')"
+        />
+        @if (invalido('password')) {
+          <span class="ayuda">La contraseña necesita al menos 6 caracteres.</span>
+        }
+      </div>
+
+      <div class="campo">
+        <label for="telefono">TELÉFONO <small>(opcional)</small></label>
+        <input
+          id="telefono"
+          type="tel"
+          formControlName="telefono"
+          autocomplete="tel"
+          placeholder="3537123456"
+        />
+      </div>
+
+      <button class="btn-main" type="submit" [disabled]="enviando()">
+        {{ enviando() ? 'Creando cuenta…' : 'Crear cuenta' }}
+      </button>
+    </form>
+
+    <p class="pie">¿Ya tenés cuenta? <a routerLink="/login">Iniciá sesión</a></p>
+  </div>
+</section>

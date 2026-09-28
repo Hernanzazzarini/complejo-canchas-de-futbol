@@ -1,0 +1,30 @@
+<section class="perfil">
+  <div class="perfil-card">
+    <h2>MI PERFIL</h2>
+
+    @if (cargando()) {
+      <p class="estado">Cargando…</p>
+    } @else if (usuario(); as u) {
+      <dl class="datos">
+        <dt>Nombre</dt>
+        <dd>{{ u.nombre }}</dd>
+
+        <dt>Email</dt>
+        <dd>{{ u.email }}</dd>
+
+        <dt>Rol</dt>
+        <dd><span class="badge">{{ u.rol }}</span></dd>
+      </dl>
+
+      @if (esGestor()) {
+        <p class="nota">
+          Tu cuenta administra canchas. El panel de gestión es el próximo paso.
+        </p>
+      }
+
+      <button class="btn-salir" (click)="salir()">Cerrar sesión</button>
+    } @else {
+      <p class="estado">No pudimos traer tus datos del servidor.</p>
+    }
+  </div>
+</section>

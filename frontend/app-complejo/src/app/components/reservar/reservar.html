@@ -1,0 +1,58 @@
+<section class="reservar">
+  <header class="encabezado">
+    <h2>{{ disponibilidad()?.cancha ?? 'RESERVAR TURNO' }}</h2>
+    <p class="fecha-larga">{{ tituloFecha() }}</p>
+
+    <div class="selector-fecha">
+      <label for="fecha">FECHA</label>
+      <input
+        id="fecha"
+        type="date"
+        [value]="fecha()"
+        [min]="minima"
+        [max]="maxima"
+        (change)="cambiarFecha($any($event.target).value)"
+      />
+    </div>
+  </header>
+
+  @if (exito()) {
+    <div class="aviso aviso-exito">{{ exito() }}</div>
+  }
+  @if (error()) {
+    <div class="aviso aviso-error">{{ error() }}</div>
+  }
+
+  @if (cargando()) {
+    <p class="estado">Buscando turnos…</p>
+  } @else if (disponibilidad(); as grilla) {
+    @if (!hayLibres()) {
+      <p class="estado">No quedan turnos libres para este día.</p>
+    }
+
+    <div class="grilla">
+      @for (turno of grilla.turnos; track turno.horaInicio) {
+        <button
+          class="turno"
+          [class.ocupado]="!turno.disponible"
+          [disabled]="!turno.disponible || enviando() !== null"
+          (click)="reservar(turno)"
+        >
+          <span class="horario">
+            {{ hhmm(turno.horaInicio) }} – {{ hhmm(turno.horaFin) }}
+          </span>
+
+          @if (enviando() === turno.horaInicio) {
+            <span class="etiqueta">Confirmando…</span>
+          } @else if (turno.disponible) {
+            <span class="precio">
+              {{ turno.precio | currency: 'ARS' : 'symbol' : '1.0-0' }}
+            </span>
+          } @else {
+            <span class="etiqueta">No disponible</span>
+          }
+        </button>
+      }
+    </div>
+  }
+</section>

@@ -1,0 +1,50 @@
+<section class="mis-reservas">
+  <h2>MIS RESERVAS</h2>
+
+  @if (error()) {
+    <div class="aviso-error">{{ error() }}</div>
+  }
+
+  @if (cargando()) {
+    <p class="estado">Cargando tus turnos…</p>
+  } @else if (ordenadas().length === 0) {
+    <div class="vacio">
+      <p>Todavía no reservaste ningún turno.</p>
+      <a class="btn-main" routerLink="/canchas">Ver canchas</a>
+    </div>
+  } @else {
+    <ul class="lista">
+      @for (reserva of ordenadas(); track reserva.id) {
+        <li class="fila" [class.anulada]="reserva.estado === 'CANCELADA'">
+          <div class="datos">
+            <h3>{{ reserva.cancha.nombre }}</h3>
+            <p class="cuando">
+              {{ fechaLarga(reserva.fecha) }} ·
+              {{ hhmm(reserva.horaInicio) }} a {{ hhmm(reserva.horaFin) }}
+            </p>
+          </div>
+
+          <div class="derecha">
+            <span class="precio">
+              {{ reserva.precioTotal | currency: 'ARS' : 'symbol' : '1.0-0' }}
+            </span>
+
+            @if (reserva.estado === 'CANCELADA') {
+              <span class="badge badge-anulada">Cancelada</span>
+            } @else if (cancelable(reserva)) {
+              <button
+                class="btn-cancelar"
+                [disabled]="cancelando() === reserva.id"
+                (click)="cancelar(reserva)"
+              >
+                {{ cancelando() === reserva.id ? 'Cancelando…' : 'Cancelar' }}
+              </button>
+            } @else {
+              <span class="badge">Jugada</span>
+            }
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</section>

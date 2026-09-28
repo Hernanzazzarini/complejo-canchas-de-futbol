@@ -1,0 +1,104 @@
+@if (exito()) {
+  <div class="aviso aviso-exito">{{ exito() }}</div>
+}
+@if (error()) {
+  <div class="aviso aviso-error">{{ error() }}</div>
+}
+
+<div class="alta">
+  @if (!mostrandoAlta()) {
+    <button class="btn-main" (click)="mostrandoAlta.set(true)">
+      + Nuevo propietario
+    </button>
+    <p class="nota">
+      El registro público siempre crea un CLIENTE: este es el único camino a un
+      dueño de complejo.
+    </p>
+  } @else {
+    <form class="tarjeta" [formGroup]="formulario" (ngSubmit)="crear()">
+      <h3>NUEVO PROPIETARIO</h3>
+
+      <div class="fila-campos">
+        <div class="campo">
+          <label for="p-nombre">NOMBRE</label>
+          <input
+            id="p-nombre"
+            type="text"
+            formControlName="nombre"
+            placeholder="Nombre y apellido"
+            [class.invalido]="invalido('nombre')"
+          />
+          @if (invalido('nombre')) {
+            <span class="ayuda">Al menos 3 caracteres.</span>
+          }
+        </div>
+
+        <div class="campo">
+          <label for="p-email">EMAIL</label>
+          <input
+            id="p-email"
+            type="email"
+            formControlName="email"
+            placeholder="dueno@mail.com"
+            [class.invalido]="invalido('email')"
+          />
+          @if (invalido('email')) {
+            <span class="ayuda">Ingresá un email válido.</span>
+          }
+        </div>
+
+        <div class="campo">
+          <label for="p-password">CONTRASEÑA</label>
+          <input
+            id="p-password"
+            type="password"
+            formControlName="password"
+            autocomplete="new-password"
+            placeholder="Mínimo 6 caracteres"
+            [class.invalido]="invalido('password')"
+          />
+          @if (invalido('password')) {
+            <span class="ayuda">Al menos 6 caracteres.</span>
+          }
+        </div>
+
+        <div class="campo">
+          <label for="p-telefono">TELÉFONO <small>(opcional)</small></label>
+          <input
+            id="p-telefono"
+            type="tel"
+            formControlName="telefono"
+            placeholder="3537123456"
+          />
+        </div>
+      </div>
+
+      <div class="acciones">
+        <button class="btn-main" type="submit" [disabled]="guardando()">
+          {{ guardando() ? 'Creando…' : 'Crear propietario' }}
+        </button>
+        <button class="btn-borde" type="button" (click)="mostrandoAlta.set(false)">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  }
+</div>
+
+@if (cargando()) {
+  <p class="estado">Cargando propietarios…</p>
+} @else if (lista().length === 0) {
+  <p class="estado">Todavía no hay propietarios cargados.</p>
+} @else {
+  <ul class="lista">
+    @for (propietario of lista(); track propietario.id) {
+      <li class="tarjeta fila">
+        <div class="datos">
+          <h3>{{ propietario.nombre }}</h3>
+          <p class="email">{{ propietario.email }}</p>
+        </div>
+        <span class="chip chip-verde">#{{ propietario.id }}</span>
+      </li>
+    }
+  </ul>
+}

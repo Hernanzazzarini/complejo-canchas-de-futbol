@@ -1,0 +1,81 @@
+.footer {
+    background-color: #111111;
+    color: #aaaaaa;
+    font-family: system-ui, -apple-system, sans-serif;
+    padding-top: 3rem;
+    margin-top: auto; /* Ayuda a mantenerse abajo si el contenido es corto */
+    border-top: 3px solid #2ecc71; /* Detalle en verde césped */
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Columna 1: Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+  
+  .logo-text span {
+    color: #2ecc71;
+  }
+  
+  .description {
+    line-height: 1.5;
+    font-size: 0.9rem;
+  }
+  
+  /* Títulos de columnas */
+  .footer-col h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-col ul li {
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+  }
+  
+  .footer-col a {
+    color: #aaaaaa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .footer-col a:hover {
+    color: #2ecc71;
+  }
+  
+  .contact-info li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /* Bottom / Copyright */
+  .footer-bottom {
+    background-color: #0a0a0a;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.85rem;
+    border-top: 1px solid #222222;
+  }

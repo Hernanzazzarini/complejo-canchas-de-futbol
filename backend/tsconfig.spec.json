@@ -1,0 +1,14 @@
+{
+  // ts-jest compila los tests con este config: NestJS 12 se publica sólo como
+  // ESM, así que los specs se emiten como ESM y Jest corre con
+  // --experimental-vm-modules (ver package.json). El build de la app sigue
+  // usando tsconfig.build.json.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "rootDir": ".",
+    "noEmit": true
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"]
+}

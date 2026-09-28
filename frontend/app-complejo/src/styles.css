@@ -1,0 +1,12 @@
+/* Base global. El sitio es de fondo oscuro: si el color no se define acá,
+   cada texto nuevo nace en el negro por defecto del navegador y se pierde. */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}

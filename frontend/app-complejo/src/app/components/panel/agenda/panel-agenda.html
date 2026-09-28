@@ -1,0 +1,95 @@
+<div class="filtros">
+  <div class="campo">
+    <label for="agenda-fecha">FECHA</label>
+    <input
+      id="agenda-fecha"
+      type="date"
+      [value]="fecha()"
+      (change)="cambiarFecha($any($event.target).value)"
+    />
+  </div>
+
+  <div class="campo">
+    <label for="agenda-cancha">CANCHA</label>
+    <select
+      id="agenda-cancha"
+      [value]="canchaId()"
+      (change)="cambiarCancha($any($event.target).value)"
+    >
+      <option [value]="0">Todas</option>
+      @for (cancha of canchas(); track cancha.id) {
+        <option [value]="cancha.id">{{ cancha.nombre }}</option>
+      }
+    </select>
+  </div>
+
+  <button class="btn-borde" (click)="hoy()">Hoy</button>
+  <button class="btn-borde" (click)="verTodas()">Todas las fechas</button>
+</div>
+
+@if (error()) {
+  <div class="aviso aviso-error">{{ error() }}</div>
+}
+
+@if (cargando()) {
+  <p class="estado">Cargando la agenda…</p>
+} @else {
+  <div class="resumen">
+    <div class="dato">
+      <span class="numero">{{ confirmadas().length }}</span>
+      <span class="rotulo">turnos confirmados</span>
+    </div>
+    <div class="dato">
+      <span class="numero">
+        {{ recaudacion() | currency: 'ARS' : 'symbol' : '1.0-0' }}
+      </span>
+      <span class="rotulo">a cobrar · {{ tituloFecha() }}</span>
+    </div>
+  </div>
+
+  @if (ordenadas().length === 0) {
+    <p class="estado">No hay reservas para este filtro.</p>
+  } @else {
+    <ul class="lista">
+      @for (reserva of ordenadas(); track reserva.id) {
+        <li class="tarjeta fila" [class.anulada]="reserva.estado === 'CANCELADA'">
+          <div class="horario">
+            <span class="horas">
+              {{ hhmm(reserva.horaInicio) }}–{{ hhmm(reserva.horaFin) }}
+            </span>
+            <span class="dia">{{ fechaLarga(reserva.fecha) }}</span>
+          </div>
+
+          <div class="datos">
+            <h3>{{ reserva.cancha.nombre }}</h3>
+            @if (reserva.usuario; as cliente) {
+              <p class="cliente">{{ cliente.nombre }} · {{ cliente.email }}</p>
+            } @else {
+              <p class="cliente">Cliente no informado</p>
+            }
+          </div>
+
+          <div class="acciones">
+            <span class="precio">
+              {{ reserva.precioTotal | currency: 'ARS' : 'symbol' : '1.0-0' }}
+            </span>
+
+            @if (reserva.estado === 'CANCELADA') {
+              <span class="chip chip-rojo">Cancelada</span>
+            } @else if (cancelable(reserva)) {
+              <button
+                class="btn-peligro"
+                [disabled]="cancelando() === reserva.id"
+                (click)="cancelar(reserva)"
+              >
+                {{ cancelando() === reserva.id ? 'Cancelando…' : 'Cancelar' }}
+              </button>
+            } @else {
+              <span class="chip">Jugada</span>
+            }
+          </div>
+        </li>
+      }
+    </ul>
+  }
+}

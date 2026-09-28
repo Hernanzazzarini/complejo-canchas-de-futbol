@@ -1,0 +1,19 @@
+<section class="panel">
+  <header class="panel-header">
+    <h2>PANEL</h2>
+    <p class="quien">
+      {{ usuario()?.nombre }}
+      <span class="badge">{{ usuario()?.rol }}</span>
+    </p>
+  </header>
+
+  <nav class="solapas">
+    <a routerLink="canchas" routerLinkActive="activa">Mis canchas</a>
+    <a routerLink="agenda" routerLinkActive="activa">Agenda</a>
+    @if (esAdmin()) {
+      <a routerLink="propietarios" routerLinkActive="activa">Propietarios</a>
+    }
+  </nav>
+
+  <router-outlet></router-outlet>
+</section>

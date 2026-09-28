@@ -1,0 +1,128 @@
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 65vh;
+    /* La imagen vive en public/, que Angular copia a la raíz del sitio. */
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)),
+                url('/home.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 3rem 1.5rem;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    /* Sin esto hereda el negro del navegador y se pierde contra la foto. */
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  }
+  
+  .hero-content h1 span {
+    color: #2ecc71;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    color: #dddddd;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .btn-main {
+    background-color: #2ecc71;
+    color: #1a1a1a;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .btn-main:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary {
+    background-color: transparent;
+    color: #ffffff;
+    padding: 0.9rem 2rem;
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Services Section */
+  .services {
+    padding: 4rem 2rem;
+    background-color: #181818;
+    text-align: center;
+  }
+  
+  .services h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .service-card {
+    background-color: #222222;
+    padding: 2rem;
+    border-radius: 8px;
+    border-bottom: 3px solid #2ecc71;
+    transition: transform 0.2s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .service-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .service-card h3 {
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .service-card p {
+    color: #aaaaaa;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }

@@ -1,0 +1,208 @@
+@if (exito()) {
+  <div class="aviso aviso-exito">{{ exito() }}</div>
+}
+@if (error()) {
+  <div class="aviso aviso-error">{{ error() }}</div>
+}
+
+@if (esAdmin()) {
+  <div class="alta">
+    @if (!mostrandoAlta()) {
+      <button class="btn-main" (click)="mostrandoAlta.set(true)">
+        + Nueva cancha
+      </button>
+      <p class="nota">
+        Dar de alta canchas es exclusivo del ADMIN, y siempre a nombre de un
+        propietario.
+      </p>
+    } @else {
+      <form class="tarjeta form-alta" [formGroup]="formAlta" (ngSubmit)="crear()">
+        <h3>NUEVA CANCHA</h3>
+
+        <div class="fila-campos">
+          <div class="campo">
+            <label for="alta-nombre">NOMBRE</label>
+            <input
+              id="alta-nombre"
+              type="text"
+              formControlName="nombre"
+              placeholder="Cancha 1"
+              [class.invalido]="invalido(formAlta, 'nombre')"
+            />
+            @if (invalido(formAlta, 'nombre')) {
+              <span class="ayuda">Entre 3 y 50 caracteres.</span>
+            }
+          </div>
+
+          <div class="campo">
+            <label for="alta-precio">PRECIO POR HORA</label>
+            <input
+              id="alta-precio"
+              type="number"
+              min="1"
+              step="100"
+              formControlName="precioPorHora"
+              [class.invalido]="invalido(formAlta, 'precioPorHora')"
+            />
+            @if (invalido(formAlta, 'precioPorHora')) {
+              <span class="ayuda">Tiene que ser mayor a cero.</span>
+            }
+          </div>
+
+          <div class="campo">
+            <label for="alta-dueno">PROPIETARIO</label>
+            <select
+              id="alta-dueno"
+              formControlName="propietarioId"
+              [class.invalido]="invalido(formAlta, 'propietarioId')"
+            >
+              <option [value]="0" disabled>Elegí un dueño…</option>
+              @for (p of propietarios(); track p.id) {
+                <option [value]="p.id">{{ p.nombre }} — {{ p.email }}</option>
+              }
+            </select>
+            @if (propietarios().length === 0) {
+              <span class="ayuda">
+                No hay propietarios cargados. Creá uno en la solapa Propietarios.
+              </span>
+            }
+          </div>
+        </div>
+
+        <label class="campo-check">
+          <input type="checkbox" formControlName="techada" />
+          Es techada
+        </label>
+
+        <div class="acciones">
+          <button class="btn-main" type="submit" [disabled]="guardandoAlta()">
+            {{ guardandoAlta() ? 'Creando…' : 'Crear cancha' }}
+          </button>
+          <button class="btn-borde" type="button" (click)="mostrandoAlta.set(false)">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    }
+  </div>
+}
+
+@if (cargando()) {
+  <p class="estado">Cargando tus canchas…</p>
+} @else if (canchas().length === 0) {
+  <p class="estado">
+    Todavía no tenés canchas asignadas. El ADMIN de la plataforma es quien las
+    da de alta.
+  </p>
+} @else {
+  <ul class="lista">
+    @for (cancha of canchas(); track cancha.id) {
+      <li class="tarjeta fila" [class.baja]="!cancha.activa">
+        @if (editando() === cancha.id) {
+          <form
+            class="form-edicion"
+            [formGroup]="formEdicion"
+            (ngSubmit)="guardarEdicion(cancha)"
+          >
+            <div class="fila-campos">
+              <div class="campo">
+                <label [attr.for]="'nombre-' + cancha.id">NOMBRE</label>
+                <input
+                  [id]="'nombre-' + cancha.id"
+                  type="text"
+                  formControlName="nombre"
+                  [class.invalido]="invalido(formEdicion, 'nombre')"
+                />
+                @if (invalido(formEdicion, 'nombre')) {
+                  <span class="ayuda">Entre 3 y 50 caracteres.</span>
+                }
+              </div>
+
+              <div class="campo">
+                <label [attr.for]="'precio-' + cancha.id">PRECIO POR HORA</label>
+                <input
+                  [id]="'precio-' + cancha.id"
+                  type="number"
+                  min="1"
+                  step="100"
+                  formControlName="precioPorHora"
+                  [class.invalido]="invalido(formEdicion, 'precioPorHora')"
+                />
+                @if (invalido(formEdicion, 'precioPorHora')) {
+                  <span class="ayuda">Tiene que ser mayor a cero.</span>
+                }
+              </div>
+            </div>
+
+            <label class="campo-check">
+              <input type="checkbox" formControlName="techada" />
+              Es techada
+            </label>
+
+            <div class="acciones">
+              <button
+                class="btn-main"
+                type="submit"
+                [disabled]="ocupada() === cancha.id"
+              >
+                {{ ocupada() === cancha.id ? 'Guardando…' : 'Guardar' }}
+              </button>
+              <button class="btn-borde" type="button" (click)="cerrarEdicion()">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        } @else {
+          <div class="datos">
+            <h3>
+              {{ cancha.nombre }}
+              @if (!cancha.activa) {
+                <span class="chip chip-rojo">De baja</span>
+              } @else if (cancha.techada) {
+                <span class="chip chip-verde">Techada</span>
+              }
+            </h3>
+            <p class="detalle">
+              {{ cancha.precioPorHora | currency: 'ARS' : 'symbol' : '1.0-0' }} por hora
+              @if (esAdmin()) {
+                · dueño: {{ nombrePropietario(cancha.propietarioId) }}
+              }
+            </p>
+          </div>
+
+          <div class="acciones">
+            <button
+              class="btn-borde"
+              [disabled]="ocupada() === cancha.id"
+              (click)="abrirEdicion(cancha)"
+            >
+              Editar
+            </button>
+
+            @if (cancha.activa) {
+              <button
+                class="btn-peligro"
+                [disabled]="ocupada() === cancha.id"
+                (click)="darDeBaja(cancha)"
+              >
+                {{ ocupada() === cancha.id ? 'Dando de baja…' : 'Dar de baja' }}
+              </button>
+            } @else {
+              <button
+                class="btn-main"
+                [disabled]="ocupada() === cancha.id"
+                (click)="reactivar(cancha)"
+              >
+                {{ ocupada() === cancha.id ? 'Reactivando…' : 'Reactivar' }}
+              </button>
+            }
+          </div>
+        }
+      </li>
+    }
+  </ul>
+
+  <p class="resumen">
+    {{ activas().length }} activa(s) · {{ inactivas().length }} de baja
+  </p>
+}

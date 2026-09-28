@@ -1,0 +1,130 @@
+.reservar {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  min-height: 60vh;
+}
+
+.encabezado {
+  margin-bottom: 2rem;
+}
+
+.encabezado h2 {
+  margin: 0 0 0.25rem;
+  font-size: 2rem;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.fecha-larga {
+  margin: 0 0 1.5rem;
+  color: #aaaaaa;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.selector-fecha {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.selector-fecha label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #dddddd;
+  letter-spacing: 0.5px;
+}
+
+.selector-fecha input {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  background-color: #222222;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: inherit;
+  /* Sin esto el ícono del calendario queda negro sobre negro en Chrome. */
+  color-scheme: dark;
+}
+
+.selector-fecha input:focus {
+  outline: none;
+  border-color: #2ecc71;
+}
+
+.aviso {
+  margin-bottom: 1.5rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.aviso-exito {
+  background-color: rgba(46, 204, 113, 0.12);
+  color: #2ecc71;
+}
+
+.aviso-error {
+  background-color: rgba(231, 76, 60, 0.12);
+  color: #e74c3c;
+}
+
+.estado {
+  color: #aaaaaa;
+}
+
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.turno {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem 1rem;
+  border: 1px solid #2ecc71;
+  border-radius: 8px;
+  background-color: #222222;
+  color: #ffffff;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.turno:hover:not(:disabled) {
+  background-color: #2a2a2a;
+  transform: translateY(-3px);
+}
+
+.turno:disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+
+.turno.ocupado {
+  border-color: #3a3a3a;
+  color: #777777;
+  background-color: #1e1e1e;
+}
+
+.horario {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.precio {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2ecc71;
+}
+
+.etiqueta {
+  font-size: 0.8rem;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

@@ -1,0 +1,17 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "extensionsToTreatAsEsm": [".ts"],
+  "setupFiles": ["<rootDir>/test/jest.setup.ts"],
+  "moduleNameMapper": {
+    "^(\\.{1,2}/.*)\\.js$": "$1"
+  },
+  "transform": {
+    "^.+\\.(t|j)s$": [
+      "ts-jest",
+      { "useESM": true, "tsconfig": "tsconfig.spec.json" }
+    ]
+  }
+}
